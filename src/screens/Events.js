@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { FlatList, View, Text, TextInput, Button } from 'react-native';
 import firebase from 'react-native-firebase';
 
-import Todo from '../Todo';
+import Event from '../components/Event';
 
-class Todos extends Component {
+class Events extends Component {
   constructor() {
     super();
-    this.ref = firebase.firestore().collection('todos');
+    this.ref = firebase.firestore().collection('events');
     this.unsubscribe = null;
 
     this.state = {
       textInput: '',
       loading: true,
-      todos: [],
+      events: [],
     };
   }
 componentDidMount() {
@@ -29,33 +29,31 @@ componentWillUnmount() {
   }
 
   onCollectionUpdate = (querySnapshot) => {
-    const todos = [];
+    const events = [];
 
 
   querySnapshot.forEach((doc) => {
-    const { title, complete } = doc.data();
+    const { title } = doc.data();
 
-    todos.push({
+    events.push({
       key: doc.id,
       doc,
       title,
-      complete
     });
   });
 
   this.setState({
-    todos,
+    events,
     loading: false,
   });
 }
-  addTodo() {
+  addEvent() {
     this.ref.add({
       title: this.state.textInput,
-      complete: false,
     });
     this.setState({
       textInput: '',
-    })
+    });
   }
   render() {
     if (this.state.loading) {
@@ -64,22 +62,22 @@ componentWillUnmount() {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
-          data={this.state.todos}
-          renderItem={({ item }) => <Todo {...item} />}
+          data={this.state.events}
+          renderItem={({ item }) => <Event {...item} />}
         / >
         <TextInput
-          placeholder={'Add TODO'}
+          placeholder={'Add Event'}
           value={this.state.textInput}
           onChangeText={(text) => this.updateTextInput(text)}
         />
         <Button
-          title={'Add TODO'}
+          title={'Add Event'}
           disabled={!this.state.textInput.length}
-          onPress={() => this.addTodo()}
+          onPress={() => this.addEvent()}Event
         />
       </View>
     );
   }
 }
 
-export default Todos;
+export default Events;

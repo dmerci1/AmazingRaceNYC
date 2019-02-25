@@ -1,17 +1,11 @@
 import React from 'react';
 import { TouchableHighlight, View, Text } from 'react-native';
 
-export default class Todo extends React.PureComponent {
-  toggleComplete() {
-    this.props.doc.ref.update({
-      complete: !this.props.complete,
-    });
-  }
+export default class Event extends React.PureComponent {
+
   render() {
     return (
-      <TouchableHighlight
-        onPress={() => this.toggleComplete()}
-      >
+      <TouchableHighlight>
       <View style={{ flex: 1,
                      height: 48,
                      flexDirection: 'row',
@@ -20,11 +14,6 @@ export default class Todo extends React.PureComponent {
       >
         <View style={{ flex: 8 }}>
           <Text>{this.props.title}</Text>
-        </View>
-        <View style={{ flex: 2 }}>
-          {this.props.complete && (
-            <Text>Complete</Text>
-          )}
         </View>
       </View>
     </TouchableHighlight>

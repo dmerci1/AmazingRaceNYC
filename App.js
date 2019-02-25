@@ -2,13 +2,13 @@ import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
 import firebase from 'react-native-firebase';
 
-import Todos from './src/screens/Todos';
+import Events from './src/screens/Events';
 
 export default class App extends React.Component {
  render() {
     return (
-        
-          <Todos />
+
+          <Events />
 
     );
   }
