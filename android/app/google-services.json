@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "889936062218",
+    "firebase_url": "https://amazingracenyc-37d0d.firebaseio.com",
+    "project_id": "amazingracenyc-37d0d",
+    "storage_bucket": "amazingracenyc-37d0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889936062218:android:0d1527d12c97cc7c",
+        "android_client_info": {
+          "package_name": "com.daniel.race"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889936062218-uq4i3jc6h5kf476a3f21l9ctrtd5acha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy2qxwwPiCotfOQIIcG0FZIb6X_TqiA0c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
