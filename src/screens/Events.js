@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text, TextInput, Button } from 'react-native';
+import { FlatList, View, Text, TextInput, Modal, Alert, TouchableHighlight } from 'react-native';
 import firebase from 'react-native-firebase';
+import { Container,Card, Button } from 'native-base';
 
 import Event from '../components/Event';
+import EventsFormModal from '../components/EventsFormModal';
 
 class Events extends Component {
   constructor() {
@@ -14,6 +16,7 @@ class Events extends Component {
       textInput: '',
       loading: true,
       events: [],
+      modalVisible: false,
     };
   }
 componentDidMount() {
@@ -55,27 +58,60 @@ componentWillUnmount() {
       textInput: '',
     });
   }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  onAccept() {
+  const { uid } = this.props.navigation.state.params.dog;
+
+  const navigationProps = this.props.navigation;
+  this.props.dogDelete({ uid, navigationProps });
+  this.props.userDogDelete({ uid, navigationProps });
+}
+
+onDecline() {
+  this.setState({ showModal: false });
+}
   render() {
     if (this.state.loading) {
       return null;
     }
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          data={this.state.events}
-          renderItem={({ item }) => <Event {...item} />}
-        / >
-        <TextInput
-          placeholder={'Add Event'}
-          value={this.state.textInput}
-          onChangeText={(text) => this.updateTextInput(text)}
-        />
-        <Button
-          title={'Add Event'}
-          disabled={!this.state.textInput.length}
-          onPress={() => this.addEvent()}Event
-        />
+      <View>
+        <Modal
+          animationType= "slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed');
+          }}>
+          <View>
+            <View>
+              <Text>Hello World</Text>
+              <Button rounded danger
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Hide Modal</Text>
+              </Button>
+              <EventsFormModal
+          />
+            </View>
+          </View>
+        </Modal>
+
+        <Button rounded info
+          onPress={() => {
+            this.setModalVisible(true);
+          }}>
+          <Text>Show Modal</Text>
+        </Button>
       </View>
+
+
+
     );
   }
 }

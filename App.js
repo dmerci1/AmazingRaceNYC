@@ -3,6 +3,7 @@ import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-nativ
 import firebase from 'react-native-firebase';
 
 import Events from './src/screens/Events';
+import EventsFormModal from './src/components/EventsFormModal';
 
 export default class App extends React.Component {
  render() {
